@@ -28,4 +28,4 @@ exports.register = async (req, res) => {
         console.log(e);
         res.render('404');
     }
-}
+};

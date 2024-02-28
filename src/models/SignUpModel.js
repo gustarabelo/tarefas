@@ -30,6 +30,8 @@ class SignUp {
     valida() {
         this.cleanUp();
 
+        if(this.body.name.length < 4 || this.body.name.length > 20) this.errors.push('Nome inválido');
+
         if (!validator.isEmail(this.body.email)) this.errors.push('E-mail inválido.');
 
         if (this.body.password.length < 6 || this.body.password.length > 20) {
@@ -37,9 +39,9 @@ class SignUp {
         }
     }
 
-    async userExists(){
-        this.user = await SignUpModel.findOne({ email: this.body.email});
-        if(this.user) this.errors.push('E-mail já cadastrado');
+    async userExists() {
+        this.user = await SignUpModel.findOne({ email: this.body.email });
+        if (this.user) this.errors.push('E-mail já cadastrado');
     }
 
     cleanUp() {
@@ -58,4 +60,4 @@ class SignUp {
     }
 };
 
-module.exports = SignUp;
+module.exports = { SignUp, SignUpModel};
