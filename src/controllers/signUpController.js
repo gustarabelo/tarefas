@@ -11,10 +11,21 @@ exports.register = async (req, res) => {
         await register.register();
 
         if (register.errors.length > 0) {
-            res.send(register.errors);
+            req.flash('errors', register.errors);
+            req.session.save(() => {
+                res.redirect('/signUp/index');
+                return;
+            })
+            return;
         }
-        res.send('Feito');
+
+        req.flash('success', 'Conta criada com sucesso');
+        req.session.save(() => {
+            res.redirect('/signUp/index');
+            return;
+        })
     } catch (e) {
         console.log(e);
+        res.render('404');
     }
 }
