@@ -7,8 +7,6 @@ const ModelSchema = mongoose.Schema({
 
 const HomeModel = mongoose.model('Home', ModelSchema);
 
-// module.exports = HomeModel
-
 class Home {
 
 }

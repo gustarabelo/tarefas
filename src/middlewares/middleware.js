@@ -1,6 +1,5 @@
 exports.middlewareGlobal = (req, res, next) => {
     res.locals.varLocal = 'variavel local é essa';
-    //console.log('Passei aqui')
     next();
 }
 

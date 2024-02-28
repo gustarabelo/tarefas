@@ -1,13 +1,38 @@
 <%- include('includes/head'); %>
+<%- include('includes/nav'); %>
 
-<section class="container">
-    <h1> <%= csrfToken %></h1>
-    <form action="/" method="post">
-        <input type="hidden" name="_csrf" value=" <%= csrfToken%>">
-        <label>Nome:</label>
-        <input type="text" name="nome" />
-        <button>submit</button>
-    </form>
-</section>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-2"></div>
+
+        <div class="col-lg-8 my-3">
+            <h1 class="text-center">Olá, seja bem vindo</h1>
+            <p class="text-center lead">Entre na sua conta para criar e editar suas tarefas. Caso não tenha cadastre-se</p>
+
+            <div class="col-lg-2"></div>
+
+            <h1 class="text-center">Tarefas</h1>
+            <p class="text-center lead">Suas tarefas abaixo</p>
+
+            <div class="responsive-table">
+                <table class="table my-3">
+                    <tr>
+                        <th>Título</th>
+                        <th>Descrição</th>
+                        <th>Vencimento</th>
+                    </tr>
+                    <tr>
+                        <td>nome</td>
+                        <td>descrição</td>
+                        <td>data</td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+
+        <div class="col-lg-2"></div>
+    </div>
+</div>
 
 <%- include('includes/footer'); %>
