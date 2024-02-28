@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
+const bcryptjs = require('bcryptjs');
 
 const ModelSchema = mongoose.Schema({
     name: { type: String, required: true },
@@ -15,6 +16,8 @@ class SignUp {
         this.body = body;
         this.errors = [];
         this.user = null;
+
+        //exports.user = this.user;
     };
 
     async register() {
@@ -23,6 +26,9 @@ class SignUp {
 
         await this.userExists();
         if (this.errors.length > 0) return;
+
+        const salt = bcryptjs.genSaltSync();
+        this.body.password = bcryptjs.hashSync(this.body.password, salt);
 
         this.user = await SignUpModel.create(this.body);
     };
@@ -37,12 +43,12 @@ class SignUp {
         if (this.body.password.length < 6 || this.body.password.length > 20) {
             this.errors.push('A senha precisa ter entre 3 e 50 caracteres.');
         }
-    }
+    };
 
     async userExists() {
         this.user = await SignUpModel.findOne({ email: this.body.email });
         if (this.user) this.errors.push('E-mail já cadastrado');
-    }
+    };
 
     cleanUp() {
         for (const key in this.body) {
@@ -57,7 +63,7 @@ class SignUp {
             email: this.body.email,
             password: this.body.password,
         }
-    }
+    };
 };
 
 module.exports = { SignUp, SignUpModel};
