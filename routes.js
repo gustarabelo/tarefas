@@ -19,6 +19,7 @@ route.post('/signIn/login', signInController.login);
 route.get('/signIn/logout', signInController.logout);
 
 // Rotas de contato
-route.get('/tarefa', tarefaController.index);
+route.get('/tarefa/index', tarefaController.index);
+route.post('/tarefa/register', tarefaController.register);
 
 module.exports = route;
