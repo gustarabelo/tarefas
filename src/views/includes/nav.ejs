@@ -14,13 +14,21 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
-
-            <li class="nav-item">
-                <a class="nav-link" href="/signUp/index">Cadastrar contato</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/signIn/index"">Entrar</a>
-            </li>
+            <% if(!user) { %>
+                <li class="nav-item">
+                    <a class="nav-link" href="/signUp/index">Cadastrar contato</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/signIn/index">Entrar</a>
+                </li>
+            <% } else { %>
+                <li class="nav-item">
+                    <a class="nav-link" href="/tarefas/index">Tarefas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/index/logout">Sair</a>
+                </li>
+            <% } %>
 
         </ul>
     </div>
