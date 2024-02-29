@@ -1,0 +1,19 @@
+<%- include('includes/head'); %>
+<%- include('includes/nav'); %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-2"></div>
+
+        <%- include('includes/messages') %>
+
+        <div class="col-lg-8 my-3">
+            <h1 class="text-center">Seja bem vindo <%= user.name %> </h1>
+            <p class="text-center lead">Agora você poderá criar suas tarefas,e estarão salvas o tempo todo.</p>
+        </div>
+
+        <div class="col-lg-2"></div>
+    </div>
+</div>
+
+<%- include('includes/footer'); %>

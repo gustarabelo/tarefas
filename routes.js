@@ -15,7 +15,7 @@ route.post('/signUp/register', signUpController.register);
 
 //Rotas de signIn
 route.get('/signIn/index', signInController.index);
-route.post('/signIn/register', signInController.login);
+route.post('/signIn/login', signInController.login);
 
 // Rotas de contato
 route.get('/contato', contatoController.paginaInicial);

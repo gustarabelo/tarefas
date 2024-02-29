@@ -1,4 +1,4 @@
-const SignUp = require('../models/SignUpModel');
+const SignUp = require('../models/SignUpModel').SignUp;
 
 exports.index = (req, res) => {
     res.render('signUp');

@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 const validator = require('validator');
 const bcryptjs = require('bcryptjs');
 
-const SignUp = require('./SignUpModel');
+const SignUp = require('./SignUpModel').SignUp;
+const SignUpModel = require('./SignUpModel').SignUpModel;
 
 const ModelSchema = mongoose.Schema({
     email: { type: String, required: true},
@@ -22,16 +23,14 @@ class SignIn {
         this.valida();
         if(this.errors.length > 0) return;
 
-        this.user = await SignUp.SignUpModel.findOne({ email: this.body.email });
+        this.user = await SignUpModel.findOne({ email: this.body.email });
+
         if(!this.user){
             this.errors.push('E-mail não cadastrado');
             return;
         }
 
-        //this.user = null;
-
-        this.user = await SignUp.SignUpModel.findOne({ password: this.body.password });
-        console.log(this.user.password);
+        // this.user = await SignUpModel.findOne({ password: this.body.password });
         if(!bcryptjs.compareSync(this.body.password, this.user.password)){
             this.errors.push('Senha inválida');
             this.user = null;
