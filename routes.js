@@ -6,6 +6,8 @@ const signUpController = require('./src/controllers/signUpController');
 const signInController = require('./src/controllers/signInController');
 const tarefaController = require('./src/controllers/tarefaController');
 
+const { loginRequired } = require('./src/middlewares/middleware')
+
 // Rotas da home
 route.get('/', homeController.index);
 
@@ -19,7 +21,9 @@ route.post('/signIn/login', signInController.login);
 route.get('/signIn/logout', signInController.logout);
 
 // Rotas de contato
-route.get('/tarefa/index', tarefaController.index);
-route.post('/tarefa/register', tarefaController.register);
+route.get('/tarefa/index', loginRequired ,tarefaController.index);
+route.post('/tarefa/register', loginRequired,tarefaController.register);
+route.get('/tarefa/index/:id', loginRequired, tarefaController.editIndex);
+route.post('/tarefa/edit/:id', loginRequired, tarefaController.edit);
 
 module.exports = route;

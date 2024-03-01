@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 
 const ModelSchema = mongoose.Schema({
     titulo: { type: String, required: true },
-    descricao: { type: String, required: false },
-    vencimento: { type: String, required: true },
+    descricao: { type: String, required: false, default: '' },
+    vencimento: { type: String, required: false, default: '' },
     criadoEm: { type: Date, default: Date.now }
 })
 
@@ -19,13 +19,41 @@ class Tarefa {
     async register() {
         this.valida();
         if (this.errors.length > 0) return;
-
         this.tarefa = await TarefaModel.create(this.body);
     };
 
     valida() {
+        this.cleanUp();
+
         if (!this.body.titulo) this.errors.push('"Título" é um campo obrigatório.');
     };
+
+    cleanUp() {
+        for (const key in this.body) {
+            if (typeof this.body[key] !== 'string') {
+                this.body[key] = '';
+            }
+        }
+
+        this.body = {
+            titulo: this.body.titulo,
+            descricao: this.body.descricao,
+            vencimento: this.body.vencimento,
+        }
+    }
+
+    async edit(id) {
+        if (typeof id !== 'string') return;
+        this.valida();
+        if (this.errors.length > 0) return;
+        this.tarefa = await TarefaModel.findByIdAndUpdate(id, this.body, { new: true });
+    }
+
+    static async buscaId(id) {
+        if (typeof id !== 'string') return;
+        const tarefa = await TarefaModel.findById(id);
+        return tarefa;
+    }
 }
 
 module.exports = Tarefa;
