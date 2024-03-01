@@ -17,20 +17,28 @@
 
                 <div class="col-lg-2"></div>
 
-                <div class="responsive-table">
-                    <table class="table my-3">
-                        <tr>
-                            <th>Título</th>
-                            <th>Descrição</th>
-                            <th>Vencimento</th>
-                        </tr>
-                        <tr>
-                            <td>nome</td>
-                            <td>descrição</td>
-                            <td>data</td>
-                        </tr>
-                    </table>
-                </div>
+                <% if(tarefas.length > 0) { %>
+                    <div class="responsive-table">
+                        <table class="table my-3">
+                            <tr>
+                                <th>Título</th>
+                                <th>Descrição</th>
+                                <th>Vencimento</th>
+                            </tr>
+                            <% tarefas.forEach(tarefa => { %>
+                                <tr>
+                                    <td><%= tarefa.titulo %></td>
+                                    <td><%= tarefa.descricao %></td>
+                                    <td><%= tarefa.vencimento %></td>
+                                    <td><a href="/tarefa/index/<%= tarefa._id %>">Editar</a></td>
+                                    <td><a href="/tarefa/delete/<%= tarefa._id %>">Excluir</a></td>
+                                </tr>
+                            <% }); %>
+                        </table>
+                    </div>
+                <% } else { %>
+                    <p class="text-center lead">Não existem tarefas.</p>
+                <% } %>
             <% } %>
 
         </div>

@@ -25,5 +25,6 @@ route.get('/tarefa/index', loginRequired ,tarefaController.index);
 route.post('/tarefa/register', loginRequired,tarefaController.register);
 route.get('/tarefa/index/:id', loginRequired, tarefaController.editIndex);
 route.post('/tarefa/edit/:id', loginRequired, tarefaController.edit);
+route.get('/tarefa/delete/:id', loginRequired, tarefaController.delete);
 
 module.exports = route;

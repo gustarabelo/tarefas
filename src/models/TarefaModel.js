@@ -40,20 +40,31 @@ class Tarefa {
             descricao: this.body.descricao,
             vencimento: this.body.vencimento,
         }
-    }
+    };
 
     async edit(id) {
         if (typeof id !== 'string') return;
         this.valida();
         if (this.errors.length > 0) return;
         this.tarefa = await TarefaModel.findByIdAndUpdate(id, this.body, { new: true });
-    }
+    };
 
     static async buscaId(id) {
         if (typeof id !== 'string') return;
         const tarefa = await TarefaModel.findById(id);
         return tarefa;
+    };
+
+    static async buscaTarefas() {
+        const tarefas = await TarefaModel.find().sort({ criadoEm: -1 });
+        return tarefas;
+    };
+
+    static async delete(id) {
+        if (typeof id !== 'string') return;
+        const tarefa = await TarefaModel.findOneAndDelete({ _id: id });
+        return tarefa;
     }
-}
+};
 
 module.exports = Tarefa;
