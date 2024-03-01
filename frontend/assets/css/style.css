@@ -2,8 +2,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
 
 :root {
-    --primary-color: #a3a3a3;
-    --primary-color-darker: #2c2c2c;
+    --primary-color: #A9A9A9;
+    --second-color: #696969;
+    --primary-color-darker: #1C1C1C;
 
     --font-comic: 'Comic Neue';
     --font-open: 'Open Sans';
@@ -26,7 +27,7 @@ body {
 .container {
     max-width: 640px;
     margin: 50px auto;
-    background-color: #fff;
+    background-color: #f1f1f1;
     padding: 20px;
     border-radius: 10px;
 }
@@ -37,12 +38,17 @@ form button {
     display: block;
     width: 100%;
     margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+form button{
+    width: 40%;
 }
 
 form input {
-    font-size: 24px;
+    font-size: 16px;
     height: 50px;
-    padding: 0 20px;
+    padding: 0 10px;
 }
 
 form input:focus {
@@ -64,7 +70,14 @@ form button:hover {
     background: var(--primary-color-darker);
 }
 
+a{
+    text-decoration: none;
+    color: black;
+}
 
+a:hover{
+    text-decoration: underline;
+}
 
 /* NavBar */
 .navbar {
@@ -149,7 +162,7 @@ td {
 /* Alert */
 .alert{
     border-radius: 7px;
-    padding: 9px;
+    padding: 12px;
     font-size: .9em;
 }
 
